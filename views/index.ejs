@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Document</title>
+</head>
+<body class="#bdbdbd grey lighten-1">
+    <h3 class="center-align">JSON WEB TOKEN</h3>
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+       <% if(token != ''){ %>  
+        <pre id="myInput"><%= token %></pre>
+       <% }else {%>
+        <pre>register for token</pre>
+       <% } %>       
+    </div> 
+  </div>
+    <div class="row">
+        <div class="col s6">
+          <div class="card-panel center-align">
+            <h4>GET JWT</h4>
+            <form action="/add/user" method="POST">
+                <input type="text" name="name" id="name" placeholder="name">
+                <input type="password" name="password" id="password" placeholder="password">
+                <input type="text" name="secret" id="secret" placeholder="secret string">               
+                <input type="submit" value="submit" class="btn">
+            </form>
+          </div>
+          <a class="waves-effect waves-light btn modal-trigger col s12" href="#modal1">Get Token</a>
+        </div>
+        <div class="col s6">
+            <div class="card-panel center-align">
+                <h4>VERIFY</h4>
+                <form action="/user/verify" method="POST">
+                       <textarea type="textarea" id="jwt" name="jwt"></textarea>
+                        <button type="submit" class="btn">submit</button>   
+                </form>
+                <div>
+                    <% if(verify != undefined){ %> 
+                        <p>
+                        Access Token Verified Successfully 
+                        </p>
+                        <p>result : <%= verify %></p>                    
+                    <% } %> 
+                </div>
+            </div>
+          </div>
+      </div>
+      
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      M.Modal.init(document.querySelectorAll('.modal'));
+      M.textareaAutoResize.init(document.querySelectorAll('#jwt'))
+    </script>
+</body>
+</html>
+
+
+
+
+  
+
+            
